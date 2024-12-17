@@ -6,9 +6,8 @@ export class Controller {
     this.randomStringList = new RandomStringList();
     this.viewRandomStringList = new ViewRandomStringList(this.randomStringList);
 
-    this.viewRandomStringList.addClickHandler('add_string', () => this.addString());
-    this.viewRandomStringList.addClickHandler('delete_string', (id) => this.deleteString(id));
-    this.viewRandomStringList.addClickHandler('show_all', () => this.showAllStrings());
+    this.viewRandomStringList.addClickHandler('generate', () => this.addString());
+    this.viewRandomStringList.addClickHandler('delete_first', () => this.deleteString());
   }
 
   addString() {
@@ -16,12 +15,12 @@ export class Controller {
     this.viewRandomStringList.updatePage();
   }
 
-  deleteString(id) {
-    this.randomStringList.delete(id);
+  deleteString() {
+    this.randomStringList.deleteFirst();
     this.viewRandomStringList.updatePage();
   }
 
-  showAllStrings() {
-    this.viewRandomStringList.showAll();
+  updatePage() {
+    this.viewRandomStringList.updatePage();
   }
 }
