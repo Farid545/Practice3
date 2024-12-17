@@ -7,9 +7,16 @@
         flex-wrap: wrap;
         gap: 10px;
       }
+      .flex-container {
+  		display: flex;
+  		justify-content: space-around;
+  		align-items: center;
+  		padding: 20px;
+  	}
     </style>
   </head>
   <body>
+    <div class="flex-container">
     <h1>Random String Generator</h1>
     <p>Random Strings:</p>
     <div id="random_strings"></div>
@@ -17,5 +24,6 @@
     <button id="delete_first">Delete First String</button>
 
     <script type="module" src="./main.js"></script>
+      </div>
   </body>
 </html>  
