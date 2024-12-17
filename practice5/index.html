@@ -2,17 +2,20 @@
 <html>
   <head>
     <style>
-      #random_numbers {
+      #random_strings {
         display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
       }
     </style>
   </head>
   <body>
-    <p>Random numbers sum is <span id='sum'></span></p>
-    <p>Random numbers:</p>
-    <div id="random_numbers"></div>
-    <button id="generate">Generate</button>
-    <button id="delete_blue">Delete 'Blue' Numbers</button>
+    <h1>Random String Generator</h1>
+    <p>Random Strings:</p>
+    <div id="random_strings"></div>
+    <button id="generate">Add Random String</button>
+    <button id="delete_first">Delete First String</button>
+
     <script type="module" src="./main.js"></script>
   </body>
 </html>  
