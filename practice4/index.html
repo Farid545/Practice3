@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice4</title>
+  <style>
+	.flex-container {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		padding: 20px;
+	}
+    form div {
+      margin: 5px 0
+    }
+  </style>
+  <script>
+    function validate() {
+      const errorElement = document.getElementById('error');
+      const successElement = document.getElementById('success');
+      errorElement.innerHTML = '';
+      successElement.innerHTML = '';
+
+      // rules
+      const rules = [
+        {'element': 'username', 'validationFunction': usernameValidation},
+        {'element': 'password', 'validationFunction': passwordValidation},
+        {'element': 'age', 'validationFunction': ageValidation},
+        {'element': 'gender', 'validationFunction': genderValidation},
+        {'element': 'country', 'validationFunction': countryValidation},
+        {'element': 'hobbies', 'validationFunction': hobbiesValidation},
+        {'element': 'newsletter', 'validationFunction': newsletterValidation}
+      ];
+
+      for (const rule of rules) {
+        const errorString = rule.validationFunction();
+        document.getElementById(rule.element).style = 'border: 1px black solid';
+
+        if (errorString !== '') {
+          errorElement.innerHTML = errorString;
+          document.getElementById(rule.element).style = 'border: 3px red solid';
+          return;
+        }
+      }
+      successElement.innerHTML = 'The validation finished successfully';
+    }
+
+    function usernameValidation() {
+      const username = document.getElementById('username');
+      if (username.value.length === 0) {
+        return 'Username is empty';
+      }
+      if (username.value.length < 4) {
+        return 'The username is too short';
+      }
+      return '';
+    }
+
+    function passwordValidation() {
+      const password = document.getElementById('password');
+      if (password.value.length < 4) {
+        return 'Password is too short';
+      }
+      return '';
+    }
+
+    function ageValidation() {
+      const age = document.getElementById('age');
+      const ageAsNumber = parseInt(age.value);
+
+      if (age.value.length === 0) {
+        return 'Age cannot be empty';
+      }
+      if (ageAsNumber < 18) {
+        return "You are too young";
+      }
+      if (ageAsNumber > 130) {
+        return "Your age is unreal";
+      }
+      return '';
+    }
+
+    function genderValidation() {
+      if (!document.querySelector("#gender_man:checked") &&
+          !document.querySelector("#gender_woman:checked")) {
+        return 'Gender is not checked';
+      }
+      return '';
+    }
+
+    function countryValidation() {
+      const country = document.getElementById('country');
+      if (country.value === '') {
+        return 'Please select a country';
+      }
+      return '';
+    }
+
+    function hobbiesValidation() {
+      const hobbies = document.getElementById('hobbies');
+      if (hobbies.value.trim() === '') {
+        return 'Hobbies field cannot be empty';
+      }
+      return '';
+    }
+
+    function newsletterValidation() {
+      const newsletter = document.getElementById('newsletter');
+      if (!newsletter.checked) {
+        return 'Please confirm if you want to receive the newsletter';
+      }
+      return '';
+    }
+  </script>
+</head>
+
+
+<body>
+	<div class="flex-container">
+	  <form onsubmit="validate(); return false;">
+		<h3>Registration Form</h3>
+
+		<div>
+		  <label for="username">Username:</label>
+		  <input type="text" id="username" />
+		</div>
+
+		<div>
+		  <label for="password">Password:</label>
+		  <input type="password" id="password" />
+		</div>
+
+		<div>
+		  <label for="age">Age:</label>
+		  <input type="number" id="age" />
+		</div>
+
+		<div>
+		  <span id="gender">Gender:</span>
+		  <input type="radio" name="gender" value="man" id="gender_man" />
+		  <label for="gender_man">Man</label>
+		  <input type="radio" name="gender" value="woman" id="gender_woman" />
+		  <label for="gender_woman">Woman</label>
+		</div>
+
+		<div>
+		  <label for="country">Country:</label>
+		  <select id="country">
+			<option value="">--Select Country--</option>
+			<option value="usa">USA</option>
+			<option value="canada">Canada</option>
+			<option value="uk">UK</option>
+		  </select>
+		</div>
+
+		<div>
+		  <label for="hobbies">Hobbies:</label>
+		  <textarea id="hobbies" rows="4" cols="50"></textarea>
+		</div>
+
+		<div>
+		  <input type="checkbox" id="newsletter" />
+		  <label for="newsletter">I want to receive the newsletter</label>
+		</div>
+
+		<div>
+		  <input type="submit" id="submit" value="Submit" />
+		</div>
+	  </form>
+
+	  <div id="error" style="color: red"></div>
+	  <div id="success" style="color: green"></div>
+	</div>
+</body>
+
+
+</html>
