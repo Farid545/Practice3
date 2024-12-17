@@ -1,8 +1,8 @@
 export class RandomString {
   constructor() {
-    const length = Math.floor(Math.random() * 10) + 5;
+    const length = Math.floor(Math.random() * 10) + 5; // длина строки от 5 до 15 символов
     this.value = this.generateRandomString(length);
-    this.id = Math.random().toString(36).substr(2, 9);
+    this.id = Math.random().toString(36).substr(2, 9); // уникальный ID
   }
 
   generateRandomString(length) {
@@ -29,10 +29,9 @@ export class RandomStringList {
     this.randomStrings.push(randomString);
   }
 
-  delete(id) {
-    const index = this.randomStrings.findIndex((str) => str.id === id);
-    if (index !== -1) {
-      this.randomStrings.splice(index, 1);
+  deleteFirst() {
+    if (this.randomStrings.length > 0) {
+      this.randomStrings.splice(0, 1); // удаляем первый элемент
     }
   }
 
