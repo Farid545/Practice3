@@ -36,7 +36,7 @@ nav ul li a {
     font-weight: bold;
 }
 
-.home-container {
+.flex-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
